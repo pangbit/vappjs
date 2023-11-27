@@ -5,12 +5,14 @@ import { ref } from "vue";
 
 import Codec from "./components/Codec.vue";
 import Regex from "./components/Regex.vue";
+import Format from "./components/Format.vue"
 
 const currentTab = ref('Codec');
 
 const tabs = ref({
-  Codec: Codec,
-  Regex
+  Codec,
+  Regex,
+  Format,
 });
 </script>
 

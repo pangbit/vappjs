@@ -36,6 +36,17 @@ fn regex_is_match(pattern: &str, text: &str) -> Result<bool, String> {
     }
 }
 
+#[tauri::command]
+fn json_format(input: &str) -> Result<String, String> {
+    match serde_json::from_str::<serde_json::Value>(input) {
+        Ok(v) => match serde_json::to_string_pretty(&v) {
+            Ok(s) => Ok(s),
+            Err(e) => Err(format!("{e:?}")),
+        },
+        Err(e) => Err(format!("{e:?}")),
+    }
+}
+
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_window::init())
@@ -47,6 +58,7 @@ fn main() {
             url_decode,
             url_encode,
             regex_is_match,
+            json_format,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
