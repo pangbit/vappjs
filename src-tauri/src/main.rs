@@ -3,6 +3,7 @@
 
 use base64::{engine::general_purpose, Engine as _};
 use regex::Regex;
+use xml::{EmitterConfig, ParserConfig};
 
 #[tauri::command]
 fn base64_decode(input: &str) -> String {
@@ -47,6 +48,29 @@ fn json_format(input: &str) -> Result<String, String> {
     }
 }
 
+#[tauri::command]
+fn xml_format(input: &str) -> Result<String, String> {
+    let mut output = vec![];
+
+    let reader = ParserConfig::new()
+        .trim_whitespace(true)
+        .ignore_comments(false)
+        .create_reader(input.as_bytes());
+
+    let mut writer = EmitterConfig::new()
+        .perform_indent(true)
+        .normalize_empty_elements(false)
+        .create_writer(&mut output);
+
+    for event in reader {
+        if let Some(event) = event.map_err(|e| format!("{e:?}"))?.as_writer_event() {
+            writer.write(event).map_err(|e| format!("{e:?}"))?
+        }
+    }
+
+    Ok(String::from_utf8_lossy(&output).to_string())
+}
+
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_window::init())
@@ -59,6 +83,7 @@ fn main() {
             url_encode,
             regex_is_match,
             json_format,
+            xml_format,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
