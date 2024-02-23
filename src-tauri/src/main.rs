@@ -10,7 +10,6 @@ mod xX509;
 
 fn main() {
     tauri::Builder::default()
-        .plugin(tauri_plugin_window::init())
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_clipboard_manager::init())
         .invoke_handler(tauri::generate_handler![
