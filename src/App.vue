@@ -7,6 +7,7 @@ import Codec from "./components/Codec.vue";
 import Regex from "./components/Regex.vue";
 import Format from "./components/Format.vue";
 import Http from "./components/Http.vue";
+import X509 from "./components/X509.vue";
 
 const currentTab = ref('Codec');
 
@@ -15,6 +16,7 @@ const tabs = ref({
   Regex,
   Format,
   Http,
+  X509,
 });
 </script>
 
