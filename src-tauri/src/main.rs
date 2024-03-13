@@ -22,6 +22,7 @@ fn main() {
             format::json_format,
             format::xml_format,
             http::http_request,
+            x509::x509_parse,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
