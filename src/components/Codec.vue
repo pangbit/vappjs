@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { invoke } from "@tauri-apps/api/primitives";
+import { invoke } from "@tauri-apps/api/core";
 import { writeText } from "@tauri-apps/plugin-clipboard-manager";
 
 const xText = ref("");
