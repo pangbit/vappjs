@@ -56,8 +56,8 @@ pub fn http_request(
 }
 
 fn do_request(req: &Request) -> Result<Response, String> {
-    let mut client = Client::builder();
-    //是否使用系统代理
+    let mut client = Client::builder().http1_title_case_headers(); //https://github.com/seanmonstar/reqwest/issues/924
+                                                                   //是否使用系统代理
     if !req.use_proxy {
         client = client.no_proxy();
     }
