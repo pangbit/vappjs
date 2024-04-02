@@ -24,17 +24,23 @@ async function url_encode() {
 </script>
 
 <template>
-  <textarea class="row" v-model="xText" rows="10"></textarea>
-  <div>
-    <button class="btn" @click="base64_decode">Base64 Decode</button>
-    <button class="btn" @click="base64_encode">Base64 Encode</button>
+  <div class="box">
+    <div class="btns">
+      <button class="btn" @click="base64_decode">Base64 Dec</button>
+      <button class="btn" @click="base64_encode">Base64 Enc</button>
 
-    <button class="btn" @click="url_decode">URL Decode</button>
-    <button class="btn" @click="url_encode">URL Encode</button>
+      <button class="btn" @click="url_decode">URL Dec</button>
+      <button class="btn" @click="url_encode">URL Enc</button>
 
-  </div>
-  <div>
-    <button class="btn" @click="xText = ''">Clean</button>
-    <button class="btn" @click="writeText(xText)">Copy</button>
+      <button class="btn" @click="xText = ''">Clean</button>
+      <button class="btn" @click="writeText(xText)">Copy</button>
+    </div>
+    <textarea class="show" v-model="xText" rows="10"></textarea>
   </div>
 </template>
+
+<style scoped>
+.show {
+  min-height: 300px;
+}
+</style>

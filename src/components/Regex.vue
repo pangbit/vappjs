@@ -60,12 +60,26 @@ async function regex_captures() {
 </script>
 
 <template>
-    <label>REGULAR EXPRESSION</label>
-    <form class="row" @submit.prevent="regex_captures">
-        <input id="regex-input" v-model="xPattern" placeholder="insert your regular expression here" />
-        <button type="submit">Go</button>
-    </form>
-    <label>TEST STRING</label>
-    <textarea class="row" rows="10" v-model="xText" placeholder="insert your test string here"></textarea>
-    <textarea class="row" rows="6" readonly id="regex-result">{{ xResult }}</textarea>
+    <div class="box">
+        <label>REGULAR EXPRESSION</label>
+        <form class="form-box" @submit.prevent="regex_captures">
+            <input class="form-input" v-model="xPattern" />
+            <button class="btn form-btn" type="submit">Go</button>
+        </form>
+        <label>TEST STRING</label>
+        <textarea class="show" v-model="xText"></textarea>
+        <textarea class="show capture" readonly>{{ xResult }}</textarea>
+    </div>
 </template>
+
+<style scoped>
+.show {
+    margin-bottom: 5px;
+    min-height: 50px;
+    height: 200px;
+}
+
+.capture {
+    color: #f37171;
+}
+</style>

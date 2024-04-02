@@ -33,36 +33,33 @@ const tabs = ref({
 </template>
 
 <style scoped>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #249b73);
-}
-
 .main {
-  font-family: sans-serif;
   border: 1px solid #eee;
   border-radius: 2px;
+
   padding: 20px 30px;
+
   margin-top: 1em;
   margin-bottom: 40px;
+
   user-select: none;
   overflow-x: auto;
+
   display: flex;
   flex-direction: column;
 }
 
 .tab-button {
   padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  /* border-top-left-radius: 3px; */
+  /* border-top-right-radius: 3px; */
   border: 1px solid #ccc;
   cursor: pointer;
+  color: rgba(85, 85, 85, 1);
   background: #f0f0f0;
-  margin-bottom: 10px;
+  margin-bottom: -1px;
   margin-right: -1px;
+  min-width: 80px;
 }
 
 .tab-button:hover {
@@ -77,8 +74,8 @@ const tabs = ref({
   border: 1px solid #ccc;
   padding: 10px;
 
-  margin-top: 500px;
-  widows: 100%;
+  /* width: 100%; */
 
+  /* margin-top: 10px; */
 }
 </style>

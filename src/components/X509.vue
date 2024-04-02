@@ -17,30 +17,22 @@ async function parse() {
 </script>
 
 <template>
-    <textarea class="input" rows="10" v-model="xPem"></textarea>
-    <textarea class="input" rows="10" v-model="xRes"></textarea>
-    <button class="btn" @click="parse">Parse</button>
+    <div class="box">
+        <div class="btns">
+            <button class="btn" @click="parse">Parse</button>
+        </div>
+        <textarea class="show" rows="10" v-model="xPem"></textarea>
+        <textarea class="show output" rows="10" v-model="xRes"></textarea>
+    </div>
 </template>
 
 <style scoped>
-.input {
-    display: flex;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-
-    border-radius: 2px;
-    border: 1px solid transparent;
-    padding: auto;
-
-    color: black;
-
-    font-size: large;
-    font-family: 'Courier New', Courier, monospace;
-
-    outline: none;
+.show {
+    min-height: 50px;
+    height: 200px;
 }
 
-.btn {
-    width: 100px;
+.output {
+    margin-top: 5px;
 }
 </style>

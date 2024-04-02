@@ -85,22 +85,49 @@ async function send() {
 </script>
 
 <template>
-    <form class="row" @submit.prevent="send">
-        <input id="regex-input" v-model="xReqMethodURL" placeholder="GET http://www.test.com">
-        <input v-model="xResolve" placeholder="DNS Resolve" style="margin-right: 5px;">
-        <button type="submit">Go</button>
-    </form>
-    <div style="margin-bottom: 1vh;">
-        <input type="checkbox" v-model="xUseProxy"><label>使用系统代理</label>
-        <input type="checkbox" v-model="xUseRedirect"><label>执行重定向</label>
-        <input type="checkbox" v-model="xSkipCertsCheck"><label>忽略证书校验</label>
+    <div class="box">
+        <form class="form-box" @submit.prevent="send">
+            <input class="form-input" v-model="xReqMethodURL" placeholder="GET https://one.one.one.one">
+            <input class="form-input input-dns" v-model="xResolve" placeholder="1.1.1.1:443">
+            <button class="btn form-btn" type="submit">Go</button>
+        </form>
+        <div class="checkboxs">
+            <label for="useproxy"><input id="useproxy" type="checkbox" v-model="xUseProxy"><span>使用系统代理</span></label>
+            <label for="redirect"><input id="redirect" type="checkbox" v-model="xUseRedirect"><span>执行重定向</span></label>
+            <label for="skipcert"><input id="skipcert" type="checkbox"
+                    v-model="xSkipCertsCheck"><span>忽略证书校验</span></label>
+        </div>
+
+        <label>请求头</label>
+        <textarea class="show" rows="5" v-model="xReqHeaders" placeholder="User-Agent:vappjs/1.0.0
+X-Forwarded-For:1.1.1.1
+Content-Type:application/json
+Content-Length:43"></textarea>
+        <label>请求体</label>
+        <textarea class="show" rows="5" v-model="XReqBody"
+            placeholder='{"name":"Alice","age":16,"gender":"female"}'></textarea>
+
+        <label>响应</label>
+        <textarea class="show" rows="18" readonly>{{ xResp }}</textarea>
     </div>
-
-    <label>请求头</label>
-    <textarea class="row" rows="5" v-model="xReqHeaders"></textarea>
-    <label>请求体</label>
-    <textarea class="row" rows="5" v-model="XReqBody"></textarea>
-
-    <label>响应</label>
-    <textarea class="row" rows="18" readonly>{{ xResp }}</textarea>
 </template>
+
+<style scoped>
+.input-dns {
+    flex: 5;
+}
+
+.checkboxs {
+    display: flex;
+    flex-direction: row;
+}
+
+.checkboxs input {
+    vertical-align: middle;
+}
+
+.checkboxs label span {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+</style>
