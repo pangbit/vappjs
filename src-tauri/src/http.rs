@@ -1,5 +1,4 @@
 use reqwest::{
-    blocking::Client,
     header::{HeaderMap, HeaderName, HeaderValue},
     redirect, Method,
 };
@@ -28,7 +27,7 @@ pub struct Response {
 }
 
 #[tauri::command]
-pub fn http_request(
+pub async fn http_request(
     url: String,
     method: String,
     headers: HashMap<String, String>,
@@ -49,15 +48,16 @@ pub fn http_request(
         use_certs_check,
     };
 
-    match do_request(&req) {
+    match do_request(&req).await {
         Ok(resp) => Ok((resp.status, resp.headers, resp.body, resp.addr)),
         Err(e) => Err(e),
     }
 }
 
-fn do_request(req: &Request) -> Result<Response, String> {
-    let mut client = Client::builder().http1_title_case_headers(); //https://github.com/seanmonstar/reqwest/issues/924
-                                                                   //是否使用系统代理
+async fn do_request(req: &Request) -> Result<Response, String> {
+    let mut client = reqwest::Client::builder().http1_title_case_headers(); //https://github.com/seanmonstar/reqwest/issues/924
+
+    //是否使用系统代理
     if !req.use_proxy {
         client = client.no_proxy();
     }
@@ -107,7 +107,7 @@ fn do_request(req: &Request) -> Result<Response, String> {
         rb = rb.body(req.body.to_owned());
     }
 
-    let resp = rb.send().map_err(|e| format!("{e:?}"))?;
+    let resp = rb.send().await.map_err(|e| format!("{e:?}"))?;
 
     let addr = match resp.remote_addr() {
         Some(addr) => addr.to_string(),
@@ -125,7 +125,7 @@ fn do_request(req: &Request) -> Result<Response, String> {
             )
         })
         .collect::<HashMap<String, String>>();
-    let resp_body = match resp.text() {
+    let resp_body = match resp.text().await {
         Ok(body) => body,
         Err(e) => format!("{e:?}"),
     };
