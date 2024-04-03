@@ -139,9 +139,19 @@ async fn do_request(req: &Request) -> Result<Response, String> {
 }
 
 #[tauri::command]
-pub async fn ipinfo() -> Result<String, String> {
-    let resp = reqwest::get("http://ipinfo.io")
-        .await
-        .map_err(|e| e.to_string())?;
+pub async fn ipinfo(use_proxy: bool) -> Result<String, String> {
+    let url = "http://ipinfo.io";
+    let resp = if use_proxy {
+        reqwest::get(url).await.map_err(|e| e.to_string())?
+    } else {
+        reqwest::Client::builder()
+            .no_proxy()
+            .build()
+            .map_err(|e| e.to_string())?
+            .get(url)
+            .send()
+            .await
+            .map_err(|e| e.to_string())?
+    };
     resp.text().await.map_err(|e| e.to_string())
 }
