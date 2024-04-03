@@ -9,6 +9,7 @@ import Format from "./components/Format.vue";
 import Http from "./components/Http.vue";
 import X509 from "./components/X509.vue";
 import Random from "./components/Random.vue";
+import Dns from "./components/Dns.vue";
 import Others from "./components/Others.vue";
 
 const currentTab = ref('Codec');
@@ -18,6 +19,7 @@ const tabs = ref({
   Regex,
   Format,
   Http,
+  Dns,
   X509,
   Random,
   Others,

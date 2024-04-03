@@ -8,6 +8,7 @@ mod http;
 mod regex;
 mod x509;
 mod random;
+mod dns;
 
 fn main() {
     tauri::Builder::default()
@@ -28,6 +29,7 @@ fn main() {
             random::gen_passwords,
             random::gen_uuid_v4,
             random::gen_uuid_v7,
+            dns::dns_lookup,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

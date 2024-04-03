@@ -27,6 +27,7 @@ url = "2.5.0"
 x509-parser = { version = "0.16", features = ["validate", "verify"] }
 uuid = { version = "1.8.0", features = ["v4", "fast-rng", "v7"] }
 passwords = "3.1.16"
+hickory-resolver = "0.24.0"
 
 
 [features]
