@@ -9,6 +9,7 @@ import Format from "./components/Format.vue";
 import Http from "./components/Http.vue";
 import X509 from "./components/X509.vue";
 import Random from "./components/Random.vue";
+import Others from "./components/Others.vue";
 
 const currentTab = ref('Codec');
 
@@ -19,6 +20,7 @@ const tabs = ref({
   Http,
   X509,
   Random,
+  Others,
 });
 </script>
 

@@ -137,3 +137,11 @@ async fn do_request(req: &Request) -> Result<Response, String> {
         addr,
     })
 }
+
+#[tauri::command]
+pub async fn ipinfo() -> Result<String, String> {
+    let resp = reqwest::get("http://ipinfo.io")
+        .await
+        .map_err(|e| e.to_string())?;
+    resp.text().await.map_err(|e| e.to_string())
+}

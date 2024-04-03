@@ -23,6 +23,7 @@ fn main() {
             format::json_format,
             format::xml_format,
             http::http_request,
+            http::ipinfo,
             x509::x509_parse,
             random::gen_passwords,
             random::gen_uuid_v4,
