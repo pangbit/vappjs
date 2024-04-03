@@ -6,7 +6,7 @@ const xText = ref("");
 const xPattern = ref("");
 const xResult = ref("");
 
-async function is_match() {
+async function isMatch() {
     try {
         if (xText.value == "") {
             xResult.value = "[Warning] Empty Data"
@@ -26,7 +26,7 @@ async function is_match() {
     }
 }
 
-async function regex_captures() {
+async function regexCaptures() {
     try {
         let text = xText.value;
         let pattern = xPattern.value;
@@ -62,7 +62,7 @@ async function regex_captures() {
 <template>
     <div class="box">
         <label>REGULAR EXPRESSION</label>
-        <form class="form-box" @submit.prevent="regex_captures">
+        <form class="form-box" @submit.prevent="regexCaptures">
             <input class="form-input" v-model="xPattern" />
             <button class="btn form-btn" type="submit">Go</button>
         </form>

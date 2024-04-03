@@ -5,7 +5,7 @@ import { invoke } from "@tauri-apps/api/core";
 const xText = ref("");
 const xError = ref("");
 
-async function json_format() {
+async function jsonFormat() {
     let input = xText.value;
     if (input == null || input == "") {
         return;
@@ -20,7 +20,7 @@ async function json_format() {
 
 }
 
-async function xml_format() {
+async function xmlFormat() {
     let input = xText.value;
     if (input == null | input == "") {
         return;
@@ -39,8 +39,8 @@ async function xml_format() {
 <template>
     <div class="box">
         <div class="btns">
-            <button class="btn" @click="json_format">Json</button>
-            <button class="btn" @click="xml_format">XML</button>
+            <button class="btn" @click="jsonFormat">Json</button>
+            <button class="btn" @click="xmlFormat">XML</button>
         </div>
         <textarea class="show" v-model="xText" rows="10"></textarea>
         <div>
