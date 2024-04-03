@@ -30,7 +30,9 @@ const tabs = ref({
         {{ tab }}
       </button>
     </div>
-    <component :is="tabs[currentTab]" class="tab"></component>
+    <keep-alive>
+      <component :is="tabs[currentTab]" class="tab"></component>
+    </keep-alive>
   </div>
 </template>
 
