@@ -7,6 +7,7 @@ mod format;
 mod http;
 mod regex;
 mod x509;
+mod random;
 
 fn main() {
     tauri::Builder::default()
@@ -23,6 +24,9 @@ fn main() {
             format::xml_format,
             http::http_request,
             x509::x509_parse,
+            random::gen_passwords,
+            random::gen_uuid_v4,
+            random::gen_uuid_v7,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
